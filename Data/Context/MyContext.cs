@@ -1,4 +1,5 @@
-﻿using Domain.Entidades;
+﻿using Data.Mapping;
+using Domain.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context
@@ -13,6 +14,9 @@ namespace Data.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new UserMap());
         }
+
+      
     }
 }
