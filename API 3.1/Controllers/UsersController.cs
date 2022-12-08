@@ -18,7 +18,7 @@ namespace API_3._1.Controllers
             _userService = service;
         }
         [HttpGet]
-        public async Task<ActionResult<List<UserEntity>>> GetAll()
+        public async Task<ActionResult<List<UserEntity>>> GetAll([FromServices] IUserService service)
         {
             if (!ModelState.IsValid) // Se ele ñ for valido
             {

@@ -1,15 +1,12 @@
+using CrossCutting.DependencyInjection;
+using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Pomelo.EntityFrameworkCore.MySql.Storage;
 
 namespace API_3._1
 {
@@ -25,6 +22,12 @@ namespace API_3._1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MyContext>(options =>
+                             options.UseMySql("Server=localhost;DataBase=ApiEstudoss;Uid=root;pwd=6801225m"));
+
+            ConfigureRepository.ConfigureDependenciesRepository(services);
+            ConfigureService.ConfigureDependenciesService(services);
+
             services.AddControllers();
         }
 

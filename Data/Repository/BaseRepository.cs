@@ -36,7 +36,7 @@ namespace Data.Repository
 
         public async Task<IEnumerable<T>> GetAsync()
         {
-          return await _context.Set<T>().AsNoTracking().ToListAsync();
+          return await _context.Set<T>().ToListAsync();
             
         }
 
